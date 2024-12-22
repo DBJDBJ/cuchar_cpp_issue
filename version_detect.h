@@ -50,7 +50,7 @@
 #ifdef __cplusplus
 extern "C" inline void print_start_info(const char argv_0[])
 #else
-inline void print_start_info(const char argv_0[static 0xFF])
+inline void print_start_info(const char argv_0[ /* cl no can do: static 0xFF */ ])
 #endif
 {
 

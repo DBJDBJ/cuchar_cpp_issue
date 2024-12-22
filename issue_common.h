@@ -59,8 +59,9 @@ void u8sample_compat(const char *str8)
 #define U8_STRING(x) u8##x
 #endif
 
-int issue_common_main(const int args, const char *argv[static args])
+int issue_common_main(const int args, const char *argv[/*cl no can do static args*/])
 {
+    (void)args; // CL requires this
     setlocale(LC_ALL, "en_US.utf8");
 
     print_start_info(argv[0]);
