@@ -45,6 +45,7 @@ void u32sample(const char32_t *str32)
 /* C17 compatible UTF-8 handling */
 void u8sample_compat(const char *str8)
 {
+    /* print char by char? Hmm... */
     while (*str8)
     {
         printf("%c", *str8);
@@ -59,9 +60,17 @@ void u8sample_compat(const char *str8)
 #define U8_STRING(x) u8##x
 #endif
 
-int issue_common_main(const int args, const char *argv[/*cl no can do static args*/])
+
+#ifdef _MSC_VER
+int issue_common_main(const int argc, const char * argv[/* cl no can do static argc*/]) 
+#else
+int issue_common_main(const int argc, const char * argv[argc])
+#endif
 {
-    (void)args; // CL requires this
+    #ifdef _MSC_VER
+    (void)argc; // CL requires this
+    #endif
+
     setlocale(LC_ALL, "en_US.utf8");
 
     print_start_info(argv[0]);
